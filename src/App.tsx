@@ -1,9 +1,5 @@
-import { useState } from 'react'
-import { Routes, Route, Link } from "react-router-dom";
 import './App.css'
 import HomePage from './pages/HomePage/HomePage';
-import About from './test/About/About';
-import Home from './test/Home/Home';
 
 const App = () => {
 

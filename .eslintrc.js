@@ -15,7 +15,8 @@ module.exports = {
   rules: {
     'import/first': 0,
     "import/extensions":0,
-    "import/no-unresolved":0
+    "import/no-unresolved":0,
+    "import/no-extraneous-dependencies":0
   },
   plugins: [
     'react',

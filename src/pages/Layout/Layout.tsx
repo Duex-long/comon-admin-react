@@ -6,35 +6,18 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import React, { lazy, Suspense, useState } from 'react';
-import { Outlet, Route, Routes, useRoutes } from 'react-router-dom';
-// import { useRoutes } from 'react-router-dom';
+import React, {  useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import './layout.less'
 
-// const promissionRouteList = useRoutes(
-//   routes:[
-//     {
-//       // caseSensitive:true,
 
-//     }
-//   ]
-// )
 
 
 const { Header, Sider, Content } = Layout;
-const AsyncUserInfo = lazy(() => import('./UserInfo/UserInfo'))
 
 const LayoutContainer: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const PromissionRoute = useRoutes([
-    {
-      path: 'userInfo',
-      element:
-        // <Suspense>
-        <AsyncUserInfo />
-      // </Suspense>
-    }
-  ])
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>

@@ -1,9 +1,9 @@
-import { Routes, Route, Navigate, useRoutes } from 'react-router-dom';
+import {  Navigate, useRoutes } from 'react-router-dom';
 import './App.css'
 import 'antd/dist/antd.css'
 import { lazy, Suspense } from 'react';
 import HomePage from './pages/HomePage/HomePage';
-import LayoutContainer from './pages/Layout/layout';
+import LayoutContainer from './pages/Layout/Layout';
 
 const App = () => {
   // const navigate = useNavigate();

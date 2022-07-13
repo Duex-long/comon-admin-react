@@ -36,7 +36,9 @@ const LayoutContainer: React.FC = () => {
   // breadcrumbFactory()
   useEffect(() => {
     const result = href.pathname.split("/");
+    console.log(result);
     result.shift();
+    // result.splice(0, 2);
     setBreadcrumbList(result);
   }, [href]);
 

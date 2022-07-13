@@ -23,7 +23,8 @@ const LoginForm = () => {
       setLoading(false);
       success();
       sessionStorage.setItem('token','1')
-      navigate('/')
+      // navigate('/')
+      window.location.href='/'
     }, 5000);
   };
   return (

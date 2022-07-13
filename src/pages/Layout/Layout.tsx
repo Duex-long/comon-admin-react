@@ -6,18 +6,30 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import './layout.less'
 import React, { useState } from 'react';
+import { useRoutes } from 'react-router-dom';
+import'./layout.less'
+
+const promissionRouteList = useRoutes(
+  routes:[
+    {
+      caseSensitive:true,
+
+    }
+  ]
+)
+
 
 const { Header, Sider, Content } = Layout;
 
-const LayoutContainer: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
-
+const LayoutContainer: React.FC =  () => {
+  const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout>
-      <Sider>
-        <div className="logo" />
+      <Sider trigger={null}  collapsible collapsed={collapsed}>
+        <div className="logo">
+          ComonApi11111
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -26,25 +38,25 @@ const LayoutContainer: React.FC = () => {
             {
               key: '1',
               icon: <UserOutlined />,
-              label: 'nav 1',
+              label: '用户列表',
             },
             {
               key: '2',
               icon: <VideoCameraOutlined />,
-              label: 'nav 2',
+              label: '分组列表',
             },
             {
               key: '3',
               icon: <UploadOutlined />,
-              label: 'nav 3',
+              label: '信息列表',
             },
           ]}
         />
       </Sider>
-      <Layout className='className="site-layout"'>
-      <Header className="site-layout-background" style={{ padding: 0 }}>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
+            className: `trigger`,
             onClick: () => setCollapsed(!collapsed),
           })}
         </Header>
@@ -60,7 +72,7 @@ const LayoutContainer: React.FC = () => {
         </Content>
       </Layout>
     </Layout>
-  )
-}
+  );
+};
 
-export default  LayoutContainer
+export default LayoutContainer

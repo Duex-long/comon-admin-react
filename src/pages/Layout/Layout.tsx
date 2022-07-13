@@ -4,20 +4,40 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  HomeOutlined
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
-import React, {  useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Layout, Menu, Breadcrumb } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import './layout.less'
-
-
-
 
 const { Header, Sider, Content } = Layout;
 
+const CustomBread: React.FC<{ breadList: string[] }> = (props: { breadList: string[] }) => (
+  <>
+    <Breadcrumb>
+      <Breadcrumb.Item href="">
+        <HomeOutlined />
+      </Breadcrumb.Item>
+      {props.breadList.map((breadItem) => <Breadcrumb.Item href="" > {breadItem} </Breadcrumb.Item>)}
+    </Breadcrumb>
+  </>
+)
+
+
 const LayoutContainer: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [breadcrumbList, setBreadcrumbList] = useState<string[]>([]);
+  const href = useLocation()
 
+
+  // breadcrumbFactory()
+  useEffect(() => {
+    const result = href.pathname.split('/')
+    result.shift()
+    setBreadcrumbList(result)
+
+  }, [href])
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -62,6 +82,7 @@ const LayoutContainer: React.FC = () => {
             minHeight: 280,
           }}
         >
+          <CustomBread breadList={breadcrumbList} />
           <Outlet />
         </Content>
       </Layout>

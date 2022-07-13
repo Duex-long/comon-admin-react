@@ -14,10 +14,12 @@ module.exports = {
   },
   rules: {
     'import/first': 0,
-
+    "import/extensions":0,
+    "import/no-unresolved":0
   },
   plugins: [
     'react',
+    "react-hooks",
     '@typescript-eslint',
   ],
 

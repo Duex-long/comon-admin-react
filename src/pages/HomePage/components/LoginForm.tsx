@@ -2,6 +2,7 @@ import {
   Button, Form, Input, message,
 } from 'antd';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginInfo {
   username: string
@@ -9,6 +10,7 @@ interface LoginInfo {
 }
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   // const [loginInfo,setLoginInfo] = useState({username:'',password:''})
   const success = () => {
     message.success('Login Success');
@@ -20,6 +22,8 @@ const LoginForm = () => {
     setTimeout(() => {
       setLoading(false);
       success();
+      sessionStorage.setItem('token','1')
+      navigate('/')
     }, 5000);
   };
   return (

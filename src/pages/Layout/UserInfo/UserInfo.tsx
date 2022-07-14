@@ -1,5 +1,8 @@
-import {  Table } from 'antd';
+import {  Table, Button ,Tag   } from 'antd';
+
 import { ColumnsType } from 'antd/lib/table';
+import { useState } from 'react';
+import UserForm from './components/UserForm/UsefForm';
 
 interface DataType {
   key: string;
@@ -68,7 +71,6 @@ const columns: ColumnsType<DataType> =  [
     dataIndex:'age',
     key:'age',
     align:'center',
-
   },
   {
     title:'Address',
@@ -81,6 +83,21 @@ const columns: ColumnsType<DataType> =  [
     dataIndex:'tags',
     key:'tags',
     align:'center',
+    render:(_, {tags}) => (
+      <>
+        {tags.map(tag => {
+           let color = tag.length > 5 ? 'geekblue' : 'green';
+           if (tag === 'loser') {
+             color = 'volcano';
+           }
+           return (
+             <Tag color={color} key={tag}>
+               {tag.toUpperCase()}
+             </Tag>
+           );
+        })}
+      </>
+    )
   },
   {
     title:'Action',
@@ -91,13 +108,21 @@ const columns: ColumnsType<DataType> =  [
 ]
 
 const UserInfo = () => {
-  console.log("test")
-  return (
-    <div className="UserInfo h-full w-full bg-pink-300">
-        <Table  columns={columns} dataSource={data}  pagination={{pageSize:3,total:data.length}} />
+  const [createUserVisible,setCreateUserVisible] = useState(false)
+  return(
+    <div className="UserInfo h-full w-full bg-pink-300 box-sizing py-30px px-20px">
+        <div className='w-full h-auto flex justify-end items-center mb-15px'>
+          <Button
+          onClick={() =>setCreateUserVisible(true) }
+          type="primary"  className='w-150px' children={['Create']}/>
+          <UserForm  isModalVisible={createUserVisible}
+          handleOk = {() =>setCreateUserVisible(false)}
+          handleCancel = { () => setCreateUserVisible(false)}
+          ></UserForm>
+        </div>
+        <Table  bordered  columns={columns} dataSource={data}  pagination={{pageSize:5,total:data.length}} />
     </div>
-  )
-}
+  )}
 
 
 export default UserInfo

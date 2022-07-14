@@ -31,6 +31,7 @@ const CustomBread: React.FC<{ breadList: string[] }> = (props: {
 const LayoutContainer: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [breadcrumbList, setBreadcrumbList] = useState<string[]>([]);
+  const activityKey ='userinfo'
   const href = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
@@ -39,6 +40,10 @@ const LayoutContainer: React.FC = () => {
     if(result[result.length-1] === 'main') navigate("userinfo")
     setBreadcrumbList(result);
   }, [href, navigate]);
+
+  const selectSideRoute = ({key}:{key: string}) => {
+    navigate(key)
+  }
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -46,15 +51,16 @@ const LayoutContainer: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[activityKey]}
+          onSelect={ selectSideRoute }
           items={[
             {
-              key: "1",
+              key: "userinfo",
               icon: <UserOutlined />,
               label: "用户列表",
             },
             {
-              key: "2",
+              key: "groupinfo",
               icon: <VideoCameraOutlined />,
               label: "分组列表",
             },

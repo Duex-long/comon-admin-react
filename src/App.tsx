@@ -6,14 +6,12 @@ import HomePage from "./pages/HomePage/HomePage";
 import LayoutContainer from "./pages/Layout/Layout";
 
 const App = () => {
-  // const navigate = useNavigate();
 
   const routerRedirect = () => (
     <Navigate
       to={`/${sessionStorage.getItem("token") ? "main/userinfo" : "login"}`}
     />
   );
-
   const AsyncUnserInfoComponent = lazy(
     () => import("./pages/Layout/UserInfo/UserInfo")
   );

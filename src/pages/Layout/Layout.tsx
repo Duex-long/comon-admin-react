@@ -22,7 +22,7 @@ const CustomBread: React.FC<{ breadList: string[] }> = (props: {
         <HomeOutlined />
       </Breadcrumb.Item>
       {props.breadList.map((breadItem) => (
-        <Breadcrumb.Item href=""> {breadItem} </Breadcrumb.Item>
+        <Breadcrumb.Item key={breadItem} href=""> {breadItem} </Breadcrumb.Item>
       ))}
     </Breadcrumb>
   </>
@@ -35,16 +35,13 @@ const LayoutContainer: React.FC = () => {
   const navigate = useNavigate();
   // breadcrumbFactory()
   useEffect(() => {
-    const result = href.pathname.split("/");
-    console.log(result);
-    result.shift();
-    // result.splice(0, 2);
-    setBreadcrumbList(result);
-  }, [href]);
-
-  useEffect(() => {
     if (!sessionStorage.getItem("token")) navigate("/login");
-  });
+    const result = href.pathname.split("/").filter((item) => !!item);
+    if(result[result.length-1] === 'main') navigate("userinfo")
+    setBreadcrumbList(result);
+  }, [href, navigate]);
+
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>

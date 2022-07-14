@@ -33,15 +33,12 @@ const LayoutContainer: React.FC = () => {
   const [breadcrumbList, setBreadcrumbList] = useState<string[]>([]);
   const href = useLocation();
   const navigate = useNavigate();
-  // breadcrumbFactory()
   useEffect(() => {
     if (!sessionStorage.getItem("token")) navigate("/login");
     const result = href.pathname.split("/").filter((item) => !!item);
     if(result[result.length-1] === 'main') navigate("userinfo")
     setBreadcrumbList(result);
   }, [href, navigate]);
-
-
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
